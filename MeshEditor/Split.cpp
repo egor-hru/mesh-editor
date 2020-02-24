@@ -207,12 +207,12 @@ void Split::addTriangle(Triangle triangle)
     else if ((lenA > 0 && lenB > 0 && lenC < 0) || (lenA < 0 && lenB < 0 && lenC > 0))
     {
         //       A    line      -->              A
-        //		/ \    /		--> 			/|\    
-        //	   /   \  /			--> 		   / | \  
-        //	  /     \/          --> 		  /  |2 \  
-        //	 /	    /\			--> 		 / 1 | /3\
-		//  /______/__\			--> 	    /____|/___\
-		// B      /    C		--> 	   B           C
+        //      / \    /	--> 	        /|\    
+        //     /   \  /		--> 	       / | \  
+        //    /     \/          --> 	      /  |2 \  
+        //   /	    /\		-->          / 1 | /3\
+	//  /______/__\		--> 	    /____|/___\
+	// B      /    C	--> 	   B           C
 
         Triangle tr;
         tr.normal = triangle.normal;
@@ -242,12 +242,12 @@ void Split::addTriangle(Triangle triangle)
     else if ((lenA > 0 && lenB < 0 && lenC > 0) || (lenA < 0 && lenB > 0 && lenC < 0))
     {
         //       A    line      -->              A
-        //		/ \    /		--> 			/|\    
-        //	   /   \  /			--> 		   / | \  
-        //	  /     \/          --> 		  /  |2 \  
-        //	 /	    /\			--> 		 / 1 | /3\
-		//  /______/__\			--> 	    /____|/___\
-		// C      /    B		--> 	   C           B
+        //      / \    /	--> 		/|\    
+        //     /   \  /		--> 	       / | \  
+        //    /     \/          --> 	      /  |2 \  
+        //   /	    /\		-->    	     / 1 | /3\
+	//  /______/__\		--> 	    /____|/___\
+	// C      /    B	--> 	   C           B
         Triangle tr;
         tr.normal = triangle.normal;
 
@@ -277,13 +277,13 @@ void Split::addTriangle(Triangle triangle)
     }
     else if ((lenA > 0 && lenB < 0 && lenC < 0) || (lenA < 0 && lenB > 0 && lenC > 0))
     {
-        //       B    line      -->              B
-        //		/ \    /		--> 			/|\    
-        //	   /   \  /			--> 		   / | \  
-        //	  /     \/          --> 		  /  |2 \  
-        //	 /	    /\			--> 		 / 1 | /3\
-		//  /______/__\			--> 	    /____|/___\
-		// C      /    A		--> 	   C           A
+        //       B    line      -->          B
+        //	/ \    /	--> 	    /|\    
+        //     /   \  /		--> 	   / | \  
+        //    /     \/          --> 	  /  |2 \  
+        //   /	    /\		--> 	 / 1 | /3\
+	//  /______/__\		--> 	/____|/___\
+	// C      /    A	--> 	C           A
 
 
         Triangle tr;
@@ -315,10 +315,10 @@ void Split::addTriangle(Triangle triangle)
     else if (lenA == 0 && lenB != 0 && lenC != 0)
     {
         //       A          
-        //		/|\    		
-        //	   / | \ 		
-        //	  /  |  \       
-        //	 / 1 | 2 \		
+        //	/|\    		
+        //     / | \ 		
+        //    /  |  \       
+        //   / 1 | 2 \		
         //  /____|____\		
         // B     |     C	
         //      line
@@ -346,10 +346,10 @@ void Split::addTriangle(Triangle triangle)
     else if (lenA != 0 && lenB == 0 && lenC != 0)
     {
         //       B          
-        //		/|\    		
-        //	   / | \ 		
-        //	  /  |  \       
-        //	 / 1 | 2 \		
+        //      /|\    		
+        //     / | \ 		
+        //    /  |  \       
+        //   / 1 | 2 \		
         //  /____|____\		
         // C     |     A	
         //      line
@@ -377,10 +377,10 @@ void Split::addTriangle(Triangle triangle)
     else if (lenA != 0 && lenB != 0 && lenC == 0)
     {
         //       C          
-        //		/|\    		
-        //	   / | \ 		
-        //	  /  |  \       
-        //	 / 1 | 2 \		
+        //	/|\    		
+        //     / | \ 		
+        //    /  |  \       
+        //   / 1 | 2 \		
         //  /____|____\		
         // A     |     B	
         //      line
@@ -434,21 +434,8 @@ void Split::triangulationEarClipping(TriangleSoup figure)
     std::list<Vec> orderedPointsOnPlane;
     orderedPointsOnPlane.push_back(linesOnPlane[0][0]);
     orderedPointsOnPlane.push_back(linesOnPlane[0][1]);
-    std::cout << linesOnPlane[0][0].x << " " << linesOnPlane[0][0].y << " " << linesOnPlane[0][0].z << " " << std::endl;
-    std::cout << linesOnPlane[0][1].x << " " << linesOnPlane[0][1].y << " " << linesOnPlane[0][1].z << " " << std::endl;
-
+  
     linesOnPlane.erase(linesOnPlane.begin());
-    for (size_t i = 0; i < linesOnPlane.size(); i++)
-    {
-        std::cout << "--[" << i << "]---" << std::endl;
-        std::cout << linesOnPlane[i][0].x << " " << linesOnPlane[i][0].y <<
-            " " << linesOnPlane[i][0].z << std::endl;
-        std::cout << linesOnPlane[i][1].x << " " << linesOnPlane[i][1].y <<
-            " " << linesOnPlane[i][1].z << std::endl;
-    }
-
-    std::cout << linesOnPlane.size() << std::endl;
-    std::cout << orderedPointsOnPlane.back().x << " " << orderedPointsOnPlane.back().y << " " << orderedPointsOnPlane.back().z << std::endl;
 
     for (auto it = orderedPointsOnPlane.begin(); it != prev(orderedPointsOnPlane.end()); it++)
     {
@@ -467,26 +454,22 @@ void Split::triangulationEarClipping(TriangleSoup figure)
     {
         for (size_t j = 0; j < linesOnPlane.size(); j++)
         {
-            std::cout << "--------------" << std::endl;
-            std::cout << orderedPointsOnPlane.back().x << " " << orderedPointsOnPlane.back().y << " " << orderedPointsOnPlane.back().z << std::endl;
-            std::cout << linesOnPlane[j][0].x << " " << linesOnPlane[j][0].y << " " << linesOnPlane[j][0].z << " " << std::endl;
-            std::cout << linesOnPlane[j][1].x << " " << linesOnPlane[j][1].y << " " << linesOnPlane[j][1].z << " " << std::endl;
-
-            if (orderedPointsOnPlane.back().x == linesOnPlane[j][0].x && orderedPointsOnPlane.back().y == linesOnPlane[j][0].y && orderedPointsOnPlane.back().z == linesOnPlane[j][0].z)
-            {
-                std::cout << "+1+" << std::endl;
-
-                orderedPointsOnPlane.push_back(linesOnPlane[j][1]);
-                linesOnPlane.erase(linesOnPlane.begin() + j);
-                break;
-            }
-            else if (orderedPointsOnPlane.back().x == linesOnPlane[j][1].x && orderedPointsOnPlane.back().y == linesOnPlane[j][1].y && orderedPointsOnPlane.back().z == linesOnPlane[j][1].z)
-            {
-                std::cout << "+0+" << std::endl;
-                orderedPointsOnPlane.push_back(linesOnPlane[j][0]);
-                linesOnPlane.erase(linesOnPlane.begin() + j);
-                break;
-            }
+        	if ( (abs(orderedPointsOnPlane.back().x - linesOnPlane[j][0].x) <= 0.01) && (abs(orderedPointsOnPlane.back().y - linesOnPlane[j][0].y) <= 0.01) 
+		   && (abs(orderedPointsOnPlane.back().z - linesOnPlane[j][0].z) <= 0.01))
+			{			
+				orderedPointsOnPlane.push_back(linesOnPlane[j][1]);
+				linesOnPlane.erase(linesOnPlane.begin() + j);
+				break;
+			}
+			else if ((abs(orderedPointsOnPlane.back().x - linesOnPlane[j][1].x) <= 0.01) && 
+					 (abs(orderedPointsOnPlane.back().y - linesOnPlane[j][1].y) <= 0.01) && 
+					 (abs(orderedPointsOnPlane.back().z - linesOnPlane[j][1].z) <= 0.01))
+			
+			{
+				orderedPointsOnPlane.push_back(linesOnPlane[j][0]);
+				linesOnPlane.erase(linesOnPlane.begin() + j);
+				break;
+			}
         }
     }
 
