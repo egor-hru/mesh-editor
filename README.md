@@ -8,3 +8,4 @@ origin is the position of the sphere in the 3D. Slices - number of vertical segm
 * **MeshEditor.exe Split input = "path\to\load\obj.stl", origin = (0,0,0), direction = (0,1,1), output1 = "path\to\save\A.stl", output2 = "path\to\save\B.stl"** (Origin - the position of the normal vector start in the 3D scene. Direction - the position of the normal vector direction in the 3D scene.)
 
 ## Video presentation
+* https://www.youtube.com/watch?v=j8Zy0SlBD5U
